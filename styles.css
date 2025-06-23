@@ -1206,8 +1206,95 @@ section {
     box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
 }
 
+/* Mobile Touch and Performance Optimizations */
+* {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+input, textarea {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+}
+
+/* Smooth scrolling for iOS */
+html {
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Better button touch targets */
+.btn, .nav-link, .social-link, .social-link-hero, .back-to-top {
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Prevent zoom on input focus for iOS */
+@media screen and (max-width: 768px) {
+    input[type="text"],
+    input[type="email"],
+    textarea {
+        font-size: 16px !important;
+    }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .profile-img img {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
+}
+
 /* Responsive Design */
+
+/* Large Tablets and Small Laptops */
+@media (max-width: 1024px) {
+    .container {
+        padding: 0 30px;
+    }
+    
+    .hero-content {
+        gap: 3rem;
+    }
+    
+    .name-text {
+        font-size: 3.5rem;
+    }
+    
+    .profile-img {
+        width: 300px;
+        height: 300px;
+    }
+    
+    .about-content,
+    .contact-content {
+        gap: 3rem;
+    }
+    
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Tablets */
 @media (max-width: 768px) {
+    .container {
+        padding: 0 20px;
+    }
+    
     .nav-menu {
         position: fixed;
         left: -100%;
@@ -1219,6 +1306,7 @@ section {
         transition: 0.3s;
         box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
         padding: 2rem 0;
+        z-index: 999;
     }
 
     .nav-menu.active {
@@ -1239,7 +1327,16 @@ section {
 
     .nav-toggle.active .bar:nth-child(3) {
         transform: translateY(-8px) rotate(-45deg);
-    }    .hero-content {
+    }
+
+    /* Hero Section Mobile */
+    .hero {
+        padding-top: 100px;
+        min-height: auto;
+        padding-bottom: 50px;
+    }
+    
+    .hero-content {
         grid-template-columns: 1fr;
         text-align: center;
         gap: 3rem;
@@ -1247,6 +1344,12 @@ section {
 
     .hero-text {
         padding: 2rem;
+        margin-bottom: 2rem;
+        order: 2;
+    }
+    
+    .hero-image {
+        order: 1;
         margin-bottom: 2rem;
     }
 
@@ -1257,16 +1360,19 @@ section {
     .hero-role {
         font-size: 1.2rem;
         justify-content: center;
+        flex-wrap: wrap;
     }
 
     .hero-buttons {
         justify-content: center;
         flex-wrap: wrap;
+        gap: 1rem;
     }
 
     .btn {
         padding: 12px 20px;
         font-size: 0.9rem;
+        min-width: 140px;
     }
 
     .profile-img {
@@ -1277,12 +1383,22 @@ section {
     .hero-stats {
         justify-content: center;
         gap: 1.5rem;
+        flex-wrap: wrap;
+    }
+
+    .stat {
+        min-width: 80px;
     }
 
     .hero-social {
         justify-content: center;
     }
 
+    .hero-tech-stack {
+        gap: 0.8rem;
+    }
+
+    /* Other Sections Mobile */
     .about-content,
     .contact-content {
         grid-template-columns: 1fr;
@@ -1291,23 +1407,29 @@ section {
 
     .stats {
         grid-template-columns: 1fr;
-        gap: 1rem;
+        gap: 1.5rem;
     }
 
-    .services-grid,
+    .services-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
     .projects-grid {
         grid-template-columns: 1fr;
+        gap: 1.5rem;
     }
 
     .footer-content {
         flex-direction: column;
-        gap: 1rem;
+        gap: 1.5rem;
         text-align: center;
     }
 
     .footer-links {
         flex-wrap: wrap;
         justify-content: center;
+        gap: 1rem;
     }
 
     .section-title {
@@ -1325,11 +1447,77 @@ section {
     .profile-decorations {
         display: none;
     }
+    
+    .hero-scroll-indicator {
+        bottom: 20px;
+        padding: 0.8rem;
+    }
+    
+    .review-card {
+        padding: 2rem;
+    }
+    
+    .contact-form {
+        padding: 2rem;
+    }
 }
 
+/* Small Tablets and Large Phones */
+@media (max-width: 640px) {
+    .container {
+        padding: 0 15px;
+    }
+    
+    .name-text {
+        font-size: 2.2rem;
+    }
+    
+    .hero-description {
+        font-size: 1rem;
+    }
+    
+    .service-card,
+    .project-card {
+        margin: 0 10px;
+    }
+    
+    .service-card {
+        padding: 2rem;
+    }
+    
+    .contact-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.5rem;
+    }
+    
+    .social-links {
+        justify-content: center;
+    }
+}
+
+/* Mobile Phones */
 @media (max-width: 480px) {
+    .container {
+        padding: 0 15px;
+    }
+    
+    .nav-container {
+        padding: 0 15px;
+    }
+    
+    .nav-logo a {
+        font-size: 1.2rem;
+    }
+
+    /* Hero Section Small Mobile */
+    .hero {
+        padding-top: 90px;
+    }
+    
     .name-text {
         font-size: 2rem;
+        line-height: 1.2;
     }
 
     .hero-role {
@@ -1341,10 +1529,29 @@ section {
     .hero-text {
         padding: 1.5rem;
     }
+    
+    .hero-greeting {
+        flex-direction: column;
+        gap: 0.3rem;
+    }
+    
+    .wave {
+        font-size: 1.5rem;
+    }
+    
+    .greeting-text {
+        font-size: 1rem;
+    }
+
+    .hero-description {
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
 
     .btn {
         padding: 10px 15px;
         font-size: 0.85rem;
+        min-width: 120px;
     }
 
     .profile-img {
@@ -1356,23 +1563,29 @@ section {
         flex-direction: column;
         gap: 1rem;
     }
+    
+    .stat-number {
+        font-size: 1.5rem;
+    }
+    
+    .stat-label {
+        font-size: 0.8rem;
+    }
 
     .hero-buttons {
         flex-direction: column;
         gap: 0.8rem;
+        width: 100%;
     }
-
-    .contact-form,
-    .review-card {
-        padding: 1.5rem;
-    }
-
-    .service-card {
-        padding: 1.5rem;
+    
+    .btn {
+        width: 100%;
+        justify-content: center;
     }
 
     .hero-tech-stack {
         gap: 0.5rem;
+        margin-top: 1.5rem;
     }
 
     .tech-item {
@@ -1383,6 +1596,176 @@ section {
     .tech-item img {
         width: 24px;
         height: 24px;
+    }
+
+    /* Other Sections Small Mobile */
+    .section-title {
+        font-size: 1.8rem;
+        margin-bottom: 2rem;
+    }
+    
+    .about-text h3 {
+        font-size: 1.5rem;
+    }
+    
+    .contact-info h3 {
+        font-size: 1.5rem;
+    }
+
+    .contact-form,
+    .review-card {
+        padding: 1.5rem;
+    }
+
+    .service-card {
+        padding: 1.5rem;
+    }
+    
+    .service-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+    
+    .project-info {
+        padding: 1.5rem;
+    }
+    
+    .form-group input,
+    .form-group textarea {
+        padding: 12px;
+        font-size: 0.9rem;
+    }
+    
+    .contact-item {
+        margin-bottom: 1rem;
+    }
+    
+    .contact-item i {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+    
+    .social-link,
+    .social-link-hero {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+    
+    .review-nav {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+    
+    .back-to-top {
+        width: 45px;
+        height: 45px;
+        bottom: 20px;
+        right: 20px;
+        font-size: 1rem;
+    }
+    
+    .footer {
+        padding: 1.5rem 0;
+    }
+    
+    .footer-links {
+        gap: 0.8rem;
+    }
+    
+    .footer-links a {
+        font-size: 0.9rem;
+    }
+}
+
+/* Extra Small Phones */
+@media (max-width: 360px) {
+    .container {
+        padding: 0 10px;
+    }
+    
+    .name-text {
+        font-size: 1.8rem;
+    }
+    
+    .hero-text {
+        padding: 1rem;
+    }
+    
+    .btn {
+        padding: 8px 12px;
+        font-size: 0.8rem;
+        min-width: 100px;
+    }
+    
+    .profile-img {
+        width: 180px;
+        height: 180px;
+    }
+    
+    .section-title {
+        font-size: 1.6rem;
+    }
+    
+    .service-card,
+    .contact-form,
+    .review-card {
+        padding: 1rem;
+    }
+    
+    .tech-item {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .tech-item img {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+/* Landscape Orientation for Mobile */
+@media (max-height: 600px) and (orientation: landscape) {
+    .hero {
+        min-height: 100vh;
+        padding-top: 80px;
+    }
+    
+    .hero-content {
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        align-items: center;
+    }
+    
+    .hero-text {
+        order: 1;
+        padding: 1.5rem;
+    }
+    
+    .hero-image {
+        order: 2;
+    }
+    
+    .profile-img {
+        width: 200px;
+        height: 200px;
+    }
+    
+    .hero-stats {
+        flex-direction: row;
+        gap: 1rem;
+    }
+    
+    .hero-buttons {
+        flex-direction: row;
+        gap: 0.5rem;
+    }
+    
+    .hero-scroll-indicator {
+        display: none;
     }
 }
 
