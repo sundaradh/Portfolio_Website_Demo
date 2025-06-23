@@ -8,6 +8,12 @@ document.addEventListener('DOMContentLoaded', function() {
     initContactForm();
     initBackToTop();
     initTypingEffect();
+    initHeroCounters();
+    initHeroParallax();
+    initHeroImageEffects();
+    initTechStackAnimations();
+    initScrollIndicator();
+    initButtonEffects();
 });
 
 // Particles.js Configuration
@@ -375,21 +381,24 @@ function initBackToTop() {
 
 // Typing Effect for Hero Section
 function initTypingEffect() {
-    const textElement = document.querySelector('.hero-text h2');
+    const textElement = document.getElementById('typing-text');
     if (!textElement) return;
 
     const texts = [
-        'Frontend Developer & UI/UX Designer',
-        'React & Vue.js Specialist',
-        'Creative Problem Solver',
-        'Digital Experience Creator'
+        'Frontend Developer',
+        'UI/UX Designer',
+        'React Specialist',
+        'Vue.js Expert',
+        'Creative Coder',
+        'Problem Solver',
+        'Digital Innovator'
     ];
     
     let textIndex = 0;
     let charIndex = 0;
     let isDeleting = false;
-    const typingSpeed = 100;
-    const deletingSpeed = 50;
+    const typingSpeed = 150;
+    const deletingSpeed = 100;
     const pauseTime = 2000;
 
     function typeEffect() {
@@ -419,6 +428,218 @@ function initTypingEffect() {
     // Start the typing effect after a delay
     setTimeout(typeEffect, 1000);
 }
+
+// Enhanced Counter Animation for Hero Stats
+function initHeroCounters() {
+    const heroStats = document.querySelectorAll('.hero-stats .stat-number');
+    let animated = false;
+
+    const animateCounters = () => {
+        if (animated) return;
+        animated = true;
+
+        heroStats.forEach(counter => {
+            const target = parseInt(counter.dataset.target);
+            const increment = target / 100;
+            let current = 0;
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                
+                counter.textContent = Math.floor(current);
+            }, 20);
+        });
+    };
+
+    // Trigger animation when hero section is visible
+    const heroObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                setTimeout(animateCounters, 1500); // Delay to match other animations
+                heroObserver.unobserve(entry.target);
+            }
+        });
+    });
+
+    const heroSection = document.querySelector('.hero');
+    if (heroSection) {
+        heroObserver.observe(heroSection);
+    }
+}
+
+// Download CV Function
+function downloadCV() {
+    // Create a simple CV content
+    const cvContent = `
+Alex Rivera - Frontend Developer
+===============================
+
+Contact Information:
+- Email: alex.rivera.dev@email.com
+- Phone: +1 (555) 123-4567
+- Location: San Francisco, CA
+- Portfolio: alexrivera.dev
+
+Summary:
+Passionate Frontend Developer with 5+ years of experience creating beautiful, 
+responsive, and user-friendly web applications. Specialized in React, Vue.js, 
+and modern JavaScript frameworks.
+
+Technical Skills:
+- JavaScript (ES6+)
+- React.js
+- Vue.js
+- HTML5 & CSS3
+- Node.js
+- TypeScript
+- SASS/SCSS
+- Git & GitHub
+
+Experience:
+- 150+ Projects Completed
+- 98% Client Satisfaction Rate
+- 5+ Years of Experience
+
+Services:
+- Web Development
+- UI/UX Design
+- Performance Optimization
+- SEO Optimization
+- Website Maintenance
+`;
+
+    // Create and download the file
+    const blob = new Blob([cvContent], { type: 'text/plain' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'Alex_Rivera_CV.txt';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    window.URL.revokeObjectURL(url);
+    
+    showNotification('CV downloaded successfully! 📄', 'success');
+}
+
+// Parallax Effect for Hero Elements
+function initHeroParallax() {
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const rate = scrolled * -0.5;
+        
+        // Parallax for floating shapes
+        const shapes = document.querySelectorAll('.shape');
+        shapes.forEach((shape, index) => {
+            const speed = 0.2 + (index * 0.1);
+            shape.style.transform = `translateY(${scrolled * speed}px)`;
+        });
+        
+        // Parallax for profile decorations
+        const decorations = document.querySelectorAll('.profile-decorations div');
+        decorations.forEach(decoration => {
+            decoration.style.transform += ` translateY(${rate}px)`;
+        });
+    });
+}
+
+// Enhanced Hero Image Effects
+function initHeroImageEffects() {
+    const profileImg = document.querySelector('.profile-img');
+    const profileGlow = document.querySelector('.profile-glow');
+    
+    if (profileImg && profileGlow) {
+        profileImg.addEventListener('mouseenter', () => {
+            profileGlow.style.opacity = '0.6';
+            profileGlow.style.transform = 'scale(1.2)';
+        });
+        
+        profileImg.addEventListener('mouseleave', () => {
+            profileGlow.style.opacity = '0.3';
+            profileGlow.style.transform = 'scale(1)';
+        });
+    }
+}
+
+// Tech Stack Item Animations
+function initTechStackAnimations() {
+    const techItems = document.querySelectorAll('.tech-item');
+    
+    techItems.forEach((item, index) => {
+        item.addEventListener('mouseenter', () => {
+            item.style.transform = 'translateY(-10px) scale(1.1)';
+            item.style.background = 'rgba(255, 255, 255, 0.3)';
+        });
+        
+        item.addEventListener('mouseleave', () => {
+            item.style.transform = 'translateY(0) scale(1)';
+            item.style.background = 'rgba(255, 255, 255, 0.1)';
+        });
+    });
+}
+
+// Scroll Indicator Click Handler
+function initScrollIndicator() {
+    const scrollIndicator = document.querySelector('.hero-scroll-indicator');
+    
+    if (scrollIndicator) {
+        scrollIndicator.addEventListener('click', () => {
+            const aboutSection = document.querySelector('#about');
+            if (aboutSection) {
+                aboutSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    }
+}
+
+// Enhanced Button Hover Effects
+function initButtonEffects() {
+    const buttons = document.querySelectorAll('.btn');
+    
+    buttons.forEach(button => {
+        button.addEventListener('mouseenter', (e) => {
+            const rect = e.target.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const ripple = document.createElement('span');
+            ripple.style.position = 'absolute';
+            ripple.style.borderRadius = '50%';
+            ripple.style.background = 'rgba(255, 255, 255, 0.3)';
+            ripple.style.transform = 'scale(0)';
+            ripple.style.left = x + 'px';
+            ripple.style.top = y + 'px';
+            ripple.style.width = '20px';
+            ripple.style.height = '20px';
+            ripple.style.marginLeft = '-10px';
+            ripple.style.marginTop = '-10px';
+            ripple.style.animation = 'ripple 0.6s linear';
+            ripple.style.pointerEvents = 'none';
+            
+            button.appendChild(ripple);
+            
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
+        });
+    });
+}
+
+// Add ripple animation to CSS
+const rippleStyle = document.createElement('style');
+rippleStyle.textContent = `
+    @keyframes ripple {
+        to {
+            transform: scale(4);
+            opacity: 0;
+        }
+    }
+`;
+document.head.appendChild(rippleStyle);
 
 // Skills Animation
 function animateSkills() {

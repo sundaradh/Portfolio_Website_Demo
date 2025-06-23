@@ -13,7 +13,7 @@
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
-                <a href="#home">Alex Rivera</a>
+                <a href="#home">Alex Rivera | DEMO PORTFOLIO</a>
             </div>
             <div class="nav-menu" id="nav-menu">
                 <a href="#home" class="nav-link">Home</a>
@@ -32,24 +32,126 @@
     </nav>
 
     <!-- Particles Background -->
-    <div id="particles-js"></div>
-
-    <!-- Hero Section -->
+    <div id="particles-js"></div>    <!-- Hero Section -->
     <section id="home" class="hero">
+        <div class="hero-background-elements">
+            <div class="floating-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+                <div class="shape shape-4"></div>
+                <div class="shape shape-5"></div>
+            </div>
+        </div>
+        
         <div class="hero-content">
             <div class="hero-text">
-                <h1>Hi, I'm <span class="highlight">Alex Rivera</span></h1>
-                <h2>Frontend Developer & UI/UX Designer</h2>
-                <p>I create beautiful, responsive, and user-friendly websites that bring your ideas to life.</p>
+                <div class="hero-greeting">
+                    <span class="wave">👋</span>
+                    <span class="greeting-text">Hello, I'm</span>
+                </div>
+                <h1 class="hero-name">
+                    <span class="name-text">Alex Rivera</span>
+                    <div class="name-underline"></div>
+                    <H3>This is a demo portfolio website</H3>
+                </h1>
+                <div class="hero-role">
+                    <span class="role-prefix">I'm a</span>
+                    <span class="typing-text" id="typing-text">Frontend Developer</span>
+                    <span class="cursor">|</span>
+                </div>
+                <p class="hero-description">
+                    I craft beautiful, responsive, and user-friendly digital experiences that bring your ideas to life. 
+                    Let's build something amazing together! ✨
+                </p>
+                
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number" data-target="150">0</span>
+                        <span class="stat-label">Projects</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number" data-target="5">0</span>
+                        <span class="stat-label">Years Exp</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number" data-target="98">0</span>
+                        <span class="stat-label">% Success</span>
+                    </div>
+                </div>
+                
                 <div class="hero-buttons">
-                    <a href="#projects" class="btn btn-primary">View My Work</a>
-                    <a href="#contact" class="btn btn-secondary">Hire Me</a>
+                    <a href="#projects" class="btn btn-primary">
+                        <span>View My Work</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="#contact" class="btn btn-secondary">
+                        <span>Let's Talk</span>
+                        <i class="fas fa-comments"></i>
+                    </a>
+                    <a href="#" class="btn btn-download" onclick="downloadCV()">
+                        <span>Download CV</span>
+                        <i class="fas fa-download"></i>
+                    </a>
+                </div>
+                
+                <div class="hero-social">
+                    <span class="social-text">Follow me:</span>
+                    <div class="social-links-hero">
+                        <a href="#" class="social-link-hero" title="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="social-link-hero" title="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#" class="social-link-hero" title="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link-hero" title="Dribbble">
+                            <i class="fab fa-dribbble"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
+            
             <div class="hero-image">
-                <div class="profile-img">
-                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face" alt="Alex Rivera">
+                <div class="profile-container">
+                    <div class="profile-img">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face" alt="Alex Rivera">
+                        <div class="profile-glow"></div>
+                    </div>
+                    <div class="profile-decorations">
+                        <div class="decoration-1">💻</div>
+                        <div class="decoration-2">🚀</div>
+                        <div class="decoration-3">⚡</div>
+                        <div class="decoration-4">🎨</div>
+                    </div>
                 </div>
+                
+                <div class="hero-tech-stack">
+                    <div class="tech-item" style="--delay: 0s">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript">
+                    </div>
+                    <div class="tech-item" style="--delay: 0.2s">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React">
+                    </div>
+                    <div class="tech-item" style="--delay: 0.4s">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg" alt="Vue.js">
+                    </div>
+                    <div class="tech-item" style="--delay: 0.6s">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js">
+                    </div>
+                    <div class="tech-item" style="--delay: 0.8s">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript">
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="hero-scroll-indicator">
+            <div class="scroll-text">Scroll Down</div>
+            <div class="scroll-arrow">
+                <i class="fas fa-chevron-down"></i>
             </div>
         </div>
     </section>
@@ -467,7 +569,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-text">
-                    <p>&copy; 2025 Alex Rivera. All rights reserved. | Designed & Developed with ❤️</p>
+                    <p>&copy; 2025 Alex Rivera. All rights reserved.</p>
                 </div>
                 <div class="footer-links">
                     <a href="#home">Home</a>
