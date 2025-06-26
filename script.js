@@ -8,10 +8,8 @@ document.addEventListener('DOMContentLoaded', function() {
     initContactForm();
     initBackToTop();
     initTypingEffect();
-    initHeroCounters();
     initHeroParallax();
     initHeroImageEffects();
-    initTechStackAnimations();
     initScrollIndicator();
     initButtonEffects();
 });
