@@ -1,25 +1,33 @@
-// DOM Content Loaded
+// DOM Content Loaded - Optimized loading
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize all functionality
-    initParticles();
+    // Initialize critical functionality first
     initNavigation();
-    initScrollAnimations();
-    initReviewSlider();
-    initContactForm();
-    initBackToTop();
     initTypingEffect();
-    initHeroParallax();
-    initHeroImageEffects();
-    initScrollIndicator();
-    initButtonEffects();
+    
+    // Defer non-critical animations
+    requestAnimationFrame(() => {
+        initParticles();
+        initScrollAnimations();
+        initReviewSlider();
+        initContactForm();
+        initBackToTop();
+        initScrollIndicator();
+        initButtonEffects();
+        
+        // Initialize hero effects after other animations
+        setTimeout(() => {
+            initHeroParallax();
+            initHeroImageEffects();
+        }, 100);
+    });
 });
 
-// Particles.js Configuration
+// Optimized Particles.js Configuration
 function initParticles() {
     particlesJS('particles-js', {
         particles: {
             number: {
-                value: 80,
+                value: 50, // Reduced from 80
                 density: {
                     enable: true,
                     value_area: 800
@@ -29,24 +37,11 @@ function initParticles() {
                 value: '#ffffff'
             },
             shape: {
-                type: 'circle',
-                stroke: {
-                    width: 0,
-                    color: '#000000'
-                },
-                polygon: {
-                    nb_sides: 5
-                }
+                type: 'circle'
             },
             opacity: {
-                value: 0.5,
-                random: false,
-                anim: {
-                    enable: false,
-                    speed: 1,
-                    opacity_min: 0.1,
-                    sync: false
-                }
+                value: 0.4, // Reduced opacity
+                random: false
             },
             size: {
                 value: 3,
@@ -161,17 +156,21 @@ function initNavigation() {
         });
     });
 
-    // Navbar scroll effect
+    // Throttled scroll event for better performance
+    let scrollTimeout;
     window.addEventListener('scroll', function() {
-        if (window.scrollY > 100) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
+        if (!scrollTimeout) {
+            scrollTimeout = setTimeout(() => {
+                if (window.scrollY > 100) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+                updateActiveNavigation();
+                scrollTimeout = null;
+            }, 10); // Throttle to 10ms
         }
-
-        // Update active navigation based on scroll position
-        updateActiveNavigation();
-    });
+    }, { passive: true });
 
     // Smooth scrolling for navigation links
     navLinks.forEach(link => {
@@ -403,17 +402,23 @@ function showNotification(message, type) {
     }, 5000);
 }
 
-// Back to Top Button
+// Back to Top Button - Optimized
 function initBackToTop() {
     const backToTopBtn = document.getElementById('back-to-top');
+    let backToTopTimeout;
     
     window.addEventListener('scroll', function() {
-        if (window.pageYOffset > 300) {
-            backToTopBtn.classList.add('show');
-        } else {
-            backToTopBtn.classList.remove('show');
+        if (!backToTopTimeout) {
+            backToTopTimeout = setTimeout(() => {
+                if (window.pageYOffset > 300) {
+                    backToTopBtn.classList.add('show');
+                } else {
+                    backToTopBtn.classList.remove('show');
+                }
+                backToTopTimeout = null;
+            }, 50); // Throttle to 50ms
         }
-    });
+    }, { passive: true });
 
     backToTopBtn.addEventListener('click', function() {
         window.scrollTo({
